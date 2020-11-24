@@ -1,0 +1,2 @@
+class ComplexBuilding < Asset
+end

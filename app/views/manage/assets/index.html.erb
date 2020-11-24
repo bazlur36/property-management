@@ -1,33 +1,28 @@
 <div class="container">
-
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">First</th>
-    <th scope="col">Last</th>
-    <th scope="col">Handle</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Larry</td>
-    <td>the Bird</td>
-    <td>@twitter</td>
-  </tr>
-  </tbody>
-</table>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Type</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @assets.each do |asset| %>
+      <tr>
+        <td><%= asset.id %></td>
+        <td><%= asset.title %></td>
+        <td><%= asset.description %></td>
+        <td><%= asset.type %></td>
+        <td>
+        <%= link_to "View", asset_path(asset), class: "btn btn-default" %>
+        <%= link_to "Edit", edit_polymorphic_path([:manage, asset]), class: "btn btn-primary" %>
+        <%= link_to "Delete", manage_asset_path(asset), method: :delete, data: {confirm: "Are you sure ?"}, class: "btn btn-danger" %>
+      </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

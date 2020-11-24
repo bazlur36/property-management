@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   end
   namespace :manage do
     resources :assets
+    resources :houses, :controller => "assets", :type => "House"
+    resources :complex_buildings, :controller => "assets", :type => "ComplexBuilding"
   end
 end
