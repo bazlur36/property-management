@@ -47,7 +47,7 @@ class Manage::AssetsController < ApplicationController
 
 
   def asset_params(type)
-    params.require(type.to_s.underscore.to_sym).permit(:title, :description, :description, :owner, :address, :rooms, :sqmt, :floors, :air_cond,
+    params.require(type.to_s.underscore.to_sym).permit(:title, :description, :image, :owner, :address, :rooms, :sqmt, :floors, :air_cond,
                                  :price, :units, :shops, :parking)
   end
 

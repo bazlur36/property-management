@@ -1,138 +1,137 @@
-<%= form_for [:manage, @asset] do |f| %>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :title %>
+        Title
       </div>
       <div class="col-lg-8">
-        <%= f.text_field :title, class: "form-control", :required => true %>
+        <%= @asset.title %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :description %>
+        Description
       </div>
       <div class="col-lg-8">
-        <%= f.text_area :description, :class => "form-control", :rows => 5, :cols => 120 %>
+        <%= @asset.description %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :image %>
+        Image
       </div>
       <div class="col-lg-8">
-        <%= f.file_field :image, :class => "form-control" %>
+        <% if @asset.image.attached? %> <img src="<%= (url_for(@asset.image)) %>"> <% end %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :owner, "Owner Email" %>
+        Owner Email
       </div>
       <div class="col-lg-8">
-        <%= f.text_field :owner, :class => "form-control"  %>
+        <%= @asset.owner %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :address %>
+        Address
       </div>
       <div class="col-lg-8">
-        <%= f.text_field :address, :class => "form-control" %>
+        <%= @asset.address %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :sqmt, 'Area in square meter' %>
+        Area in square meter
       </div>
       <div class="col-lg-8">
-        <%= f.text_field :sqmt, :class => "form-control" %>
+        <%= @asset.sqmt %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-lg-4 text-right">
-        <%= f.label :price %>
+        Price
       </div>
       <div class="col-lg-8">
-        <%= f.text_field :price, :class => "form-control" %>
+        <%= @asset.price %>
       </div>
     </div>
   </div>
-  <% if f.object.type == 'House' %>
+  <% if @asset.type == 'House' %>
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 text-right">
-          <%= f.label :rooms %>
+          Rooms
         </div>
         <div class="col-lg-8">
-          <%= f.text_field :rooms, :class => "form-control" %>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-lg-4 text-right">
-          <%= f.label :floors %>
-        </div>
-        <div class="col-lg-8">
-          <%= f.text_field :floors, :class => "form-control" %>
+          <%= @asset.rooms %>
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 text-right">
-          <%= f.label :air_cond, "Air Condition" %>
+         Floors
         </div>
         <div class="col-lg-8">
-          <%= f.check_box :air_cond %>
+          <%= @asset.floors %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-4 text-right">
+          Air Condition
+        </div>
+        <div class="col-lg-8">
+          <%= @asset.air_cond ? "Yes" : 'No' %>
         </div>
       </div>
     </div>
   <% end %>
 
-  <% if f.object.type == 'ComplexBuilding' %>
+  <% if @asset.type == 'ComplexBuilding' %>
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 text-right">
-          <%= f.label :units %>
+          Units
         </div>
         <div class="col-lg-8">
-          <%= f.text_field :units, :class => "form-control" %>
+          <%= @asset.units %>
         </div>
       </div>
     </div>
   <% end %>
 
-  <% if f.object.type == 'CommercialUnit' %>
+  <% if @asset.type == 'CommercialUnit' %>
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 text-right">
-          <%= f.label :shops %>
+          Shops
         </div>
         <div class="col-lg-8">
-          <%= f.text_field :shops, :class => "form-control" %>
+          <%= @asset.shops %>
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 text-right">
-          <%= f.label :parking %>
+          Parking
         </div>
         <div class="col-lg-8">
-          <%= f.text_field :parking, :class => "form-control" %>
+          <%= @asset.parking %>
         </div>
       </div>
     </div>
@@ -144,8 +143,10 @@
 
     </div>
     <div class="col-lg-8">
-      <%= f.submit class: "btn btn-success" %>
-      <%= link_to "Cancel", manage_assets_path, class: "btn btn-default" %>
+      <% unless @asset.is_sold %>
+        <%= link_to "Buy This", buy_property_path(@asset), class: "btn btn-success", method: :put %>
+      <% else %>
+        <span class="badge badge-secondary">This Asset is already sold</span>
+      <% end %>
     </div>
   </div>
-<% end %>
