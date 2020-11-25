@@ -37,7 +37,6 @@ class Manage::AssetsController < ApplicationController
   end
 
   private
-na thakar kotha
   def asset_types
     ["House", "ComplexBuilding", "CommercialUnit"]
   end
