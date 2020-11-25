@@ -1,5 +1,16 @@
 <div class="container">
-  <table class="table">
+  <div class="dropdown show float-right mb-3">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add New
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <%= link_to 'House', new_manage_house_path, class: 'dropdown-item' %>
+      <%= link_to 'Complex Building', new_manage_complex_building_path, class: 'dropdown-item' %>
+      <%= link_to 'Commercial Unit', new_manage_commercial_unit_path, class: 'dropdown-item' %>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
     <thead>
     <tr>
       <th scope="col">#</th>
@@ -17,7 +28,6 @@
         <td><%= asset.description %></td>
         <td><%= asset.type %></td>
         <td>
-        <%= link_to "View", asset_path(asset), class: "btn btn-default" %>
         <%= link_to "Edit", edit_polymorphic_path([:manage, asset]), class: "btn btn-primary" %>
         <%= link_to "Delete", manage_asset_path(asset), method: :delete, data: {confirm: "Are you sure ?"}, class: "btn btn-danger" %>
       </td>

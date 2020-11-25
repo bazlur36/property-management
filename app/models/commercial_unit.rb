@@ -1,0 +1,2 @@
+class CommercialUnit < Asset
+end
