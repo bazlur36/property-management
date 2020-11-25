@@ -4,12 +4,12 @@ class Manage::AssetsController < ApplicationController
   end
 
   def new
-    @asset = ad_type.new
-    @asset.type = ad_type
+    @asset = asset_type.new
+    @asset.type = asset_type
   end
 
   def create
-    @asset = ad_type.new(asset_params(ad_type))
+    @asset = asset_type.new(asset_params(asset_type))
     if @asset.save
       redirect_to manage_assets_path, notice: "Asset was created successfully."
     else
@@ -22,9 +22,8 @@ class Manage::AssetsController < ApplicationController
   end
 
   def update
-    @asset = ad_type.find(params[:id])
-    #raise @asset.inspect
-    if @asset.update(asset_params(ad_type))
+    @asset = asset_type.find(params[:id])
+    if @asset.update(asset_params(asset_type))
       redirect_to manage_assets_path, notice: "Asset was updated successfully."
     else
       render "edit"
@@ -38,13 +37,13 @@ class Manage::AssetsController < ApplicationController
   end
 
   private
-
-  def ad_types
+na thakar kotha
+  def asset_types
     ["House", "ComplexBuilding", "CommercialUnit"]
   end
 
-  def ad_type
-    params[:type].constantize if params[:type].in? ad_types
+  def asset_type
+    params[:type].constantize if params[:type].in? asset_types
   end
 
 
