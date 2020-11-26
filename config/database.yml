@@ -8,3 +8,14 @@ development:
   username: postgres
   password: root
   host: localhost
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: test_property
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  username: postgres
+  password: root
+  host: localhost
