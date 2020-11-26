@@ -45,7 +45,6 @@ class Manage::AssetsController < ApplicationController
     params[:type].constantize if params[:type].in? asset_types
   end
 
-
   def asset_params(type)
     params.require(type.to_s.underscore.to_sym).permit(:title, :description, :image, :owner, :address, :rooms, :sqmt, :floors, :air_cond,
                                  :price, :units, :shops, :parking)

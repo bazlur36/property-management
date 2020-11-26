@@ -137,14 +137,16 @@
     </div>
   <% end %>
 
-
   <div class="row">
     <div class="col-lg-4">
 
     </div>
     <div class="col-lg-8">
       <% unless @asset.is_sold %>
-        <%= link_to "Buy This", buy_property_path(@asset), class: "btn btn-success", method: :put %>
+        <%= form_with url: buy_property_path(@asset), method: :put, :class => "form-inline" do |form| %>
+          <%= form.text_field :user_email, :placeholder => "Enter Email Address", :required => true, :class => 'form-control' %>
+            <%= form.submit "Buy This Asset", class: "btn btn-success" %>
+        <% end %>
       <% else %>
         <span class="badge badge-secondary">This Asset is already sold</span>
       <% end %>

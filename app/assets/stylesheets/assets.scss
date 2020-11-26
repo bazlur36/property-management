@@ -9,10 +9,12 @@
         width: 100%;
         height: auto;
       }
-
       .image-thumb {
         max-height: 250px;
         overflow-y: hidden;
+      }
+      .card-text {
+        height: 70px;
       }
     }
   }
